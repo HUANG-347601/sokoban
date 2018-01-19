@@ -401,7 +401,7 @@ let prototypeGameState = {
   putBoxOnGoal: function ({x, y}) {
     this.level[y] = replaceAt(this.level[y], x, SOKOBAN.BOX_ON_GOAL);
 
-    return this;
+    return this ;   
   },
 
   putFloor: function ({x, y}) {
@@ -558,6 +558,19 @@ let sokoban = {
     WALL: 'wall',
   },
 
+  Check: function(level)
+  {  let height = this.level.length;
+      for (let x = 0; x < height; x ++) {
+       for (let y = 0; y < height; y ++){
+      if((this.level[y].charAt(x) == SOKOBAN.BOX) || (this.level[y].charAt(x) == SOKOBAN.GOAL))
+      return false;
+      
+      
+       }
+      }
+      return alert("win!");
+  },
+  
   /**
    * 遊戲更新介面函式
    *
@@ -566,6 +579,7 @@ let sokoban = {
   update: function (e) {
     this.move(e);
     this.paint();
+    this.Check();
   },
 };
 
